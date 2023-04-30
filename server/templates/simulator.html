@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Metronome Controller</title>
+  <style>
+    button {
+        padding: 10px;
+        border-radius: 6px;
+        background: white;
+        border: 1px solid gray;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-family: Roboto, Helvetica, sans-serif;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 20px;
+    }
+
+    body {
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="trigger-camera-button">Simulate doors closing</button>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    $('#trigger-camera-button').click(function() {
+      socket.emit('trigger_camera');
+    });
+  </script>
+
+</body>
+</html>
